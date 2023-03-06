@@ -1,38 +1,16 @@
+const path = require("path");
+
 module.exports = {
-    "extends": [
-      "airbnb",
-      "prettier",
-      "prettier/react",
-      "plugin:prettier/recommended",
-      "plugin:jest/recommended",
-      "plugin:unicorn/recommended"
+    extends: [
+      "eslint:recommended",
+      'plugin:@typescript-eslint/recommended',
+      'plugin:@typescript-eslint/recommended-requiring-type-checking',
     ],
-    "plugins": ["prettier", "jest", "unicorn"],
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
+    plugins: ["@typescript-eslint"],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        project: true,
+        tsconfigRootDir: path.resolve(__dirname, "src")
     },
-    "env": {
-      "es6": true,
-      "browser": true,
-      "jest": true
-    },
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "extensions": [".js", ".jsx", ".ts", ".tsx"]
-        }
-      }
-    },
-    "overrides": [
-      {
-        "files": ["**/*.ts", "**/*.tsx"],
-        "parser": "typescript-eslint-parser",
-        "rules": {
-          "no-undef": "off"
-        }
-      }
-    ]
+    root: true,
   }
