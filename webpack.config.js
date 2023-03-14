@@ -1,22 +1,34 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: './src/index.tsx',
-  mode: 'development',
+  mode: isDevelopment ? 'development' : 'production',
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Output Management',
+    new ESLintPlugin({
+      extensions: ['.tsx', '.ts'],
     }),
     new HtmlWebpackPlugin({
-      title: 'Hot Module Replacement',
+      title: 'TS React Template',
     }),
   ],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'babel-loader',
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              plugins: [
+                isDevelopment && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
     ],
@@ -31,9 +43,9 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
-      hot: true
     },
     compress: true,
     port: 3000,
+    hot: true,
   },
 };
