@@ -35,3 +35,7 @@ Webpack is a bundler. It makes a dense bundle.js artifact, and handles creating 
 > (webpack) ES5 -> bundle.js and index.html.
 ```
 
+## To Do
+
+- [ ] Add best practices (where to add static files, how to create styled components).
+- [ ] Add pre-commit tooling (so users get linting before commits, and don't shoot themselves in the foot).
