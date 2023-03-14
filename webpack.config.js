@@ -12,23 +12,16 @@ module.exports = {
       extensions: ['.tsx', '.ts'],
     }),
     new HtmlWebpackPlugin({
-      title: 'TS React Template',
+      filename: './index.html',
+      template: './public/template.html',
+      favicon: './public/favicon.svg',
     }),
   ],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: [
-          {
-            loader: require.resolve('babel-loader'),
-            options: {
-              plugins: [
-                isDevelopment && require.resolve('react-refresh/babel'),
-              ].filter(Boolean),
-            },
-          },
-        ],
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
     ],

@@ -1,11 +1,8 @@
-import * as _ from 'lodash';
+import React from 'react';
+import { render } from 'react-dom';
 
-function component() {
-  const element = document.createElement('div');
+import App from './app/app'
 
-  element.innerHTML = _.join(['Hello', 'webpack', 'where', 'when'], ' ');
-  const x = { a: 1 };
-  return element;
-}
+const container = document.getElementById('root');
 
-document.body.appendChild(component());
+render(<App />, container);
